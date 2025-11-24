@@ -1,10 +1,9 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { ArrowRight, Code, ShoppingBag, Zap, CheckCircle, Users, BarChart, Terminal, Globe, Mail } from 'lucide-react';
+import { ArrowRight, Code, ShoppingBag, Zap, Users, BarChart, Terminal, Globe, Mail } from 'lucide-react';
 import Script from 'next/script';
 
 import { Button } from '@/components/ui/button';
-import { ThemeToggle } from '@/components/theme-toggle';
 import { MobileMenu } from '@/components/mobile-menu';
 import { ContactForm } from '@/components/contact-form';
 import { CookieSettingsLink } from '@/components/cookie-settings-link';
@@ -51,95 +50,77 @@ export default function LandingPage() {
           }),
         }}
       />
-      <header className="sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-        <div className="container flex h-20 items-center justify-between mx-auto">
-          <div className="flex items-center gap-2">
-            <Terminal className="h-6 w-6 text-emerald-500" />
-            <span className="text-xl font-bold">
-              Noovo<span className="text-emerald-500">.</span>
-            </span>
-          </div>
-          <nav className="hidden">
-            <Link href="#services" className="text-sm font-medium text-muted-foreground hover:text-emerald-500 transition-colors">
-              Løsninger
-            </Link>
-            <Link href="#process" className="text-sm font-medium text-muted-foreground hover:text-emerald-500 transition-colors">
-              Proces
-            </Link>
-          </nav>
-          <div className="flex items-center gap-4">
-            <MobileMenu />
-            <ThemeToggle />
-            <Button asChild variant="outline" className="hidden md:inline-flex">
-              <Link href="#contact">Kontakt os</Link>
-            </Button>
-            <Button asChild className="bg-emerald-500 hover:bg-emerald-600 text-white">
-              <Link href="#contact">Få et tilbud</Link>
-            </Button>
+      <header className="sticky top-0 z-50 w-full border-b border-white/10 bg-[#1B1B1B]/80 backdrop-blur supports-[backdrop-filter]:bg-[#1B1B1B]/60">
+        <div className="container px-4 md:px-6 mx-auto">
+          <div className="flex h-16 items-center justify-between">
+            <div className="flex items-center gap-2">
+              <Terminal className="h-5 w-5 text-primary" />
+              <span className="text-base font-semibold">
+                Noovo<span className="text-primary">.</span>
+              </span>
+            </div>
+            <nav className="hidden md:flex items-center gap-6">
+              <Link href="#kunder" className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors">
+                Kunder
+              </Link>
+              <Link href="#services" className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors">
+                Services
+              </Link>
+              <Link href="#process" className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors">
+                Proces
+              </Link>
+            </nav>
+            <div className="hidden md:flex">
+              <Button asChild className="bg-primary text-primary-foreground hover:bg-primary/90">
+                <Link href="#contact">Kontakt</Link>
+              </Button>
+            </div>
+            <div className="md:hidden">
+              <MobileMenu />
+            </div>
           </div>
         </div>
       </header>
       <main className="flex-1">
-        <section className="w-full py-12 md:py-24 lg:py-32 xl:py-48 relative overflow-hidden">
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-zinc-900/50 via-background to-background dark:from-zinc-900 dark:via-background dark:to-background z-0"></div>
-          <div className="absolute inset-0 bg-grid-white/[0.02] bg-[size:50px_50px] z-0"></div>
-          <div className="container px-4 md:px-6 relative z-10 mx-auto">
-            <div className="grid gap-8 xl:grid-cols-[1fr_600px] xl:gap-12">
-              <div className="flex flex-col justify-center space-y-8">
-                <div className="inline-flex items-center max-w-max space-x-2 rounded-full bg-muted px-3 py-1 text-sm text-emerald-500">
-                  <span>Webshops & Hjemmesider</span>
-                </div>
-                <div className="space-y-6">
-                  <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none">Vi bygger webshops og hjemmesider, der er nemme at bruge</h1>
-                  <p className="max-w-[600px] text-muted-foreground md:text-xl">
-                    Vi designer og udvikler Shopify webshops og professionelle hjemmesider, der er lette at vedligeholde og klar til at skabe salg.
-                  </p>
-                </div>
-                <div className="flex flex-col gap-4 min-[400px]:flex-row">
-                  <Button asChild size="lg" className="bg-emerald-500 hover:bg-emerald-600 text-white">
-                    <Link href="#contact">
-                      Få et uforpligtende tilbud <ArrowRight className="ml-2 h-4 w-4" />
-                    </Link>
-                  </Button>
-                  <Button asChild variant="outline" size="lg">
-                    <Link href="#services">Se løsninger</Link>
-                  </Button>
-                </div>
-                <div className="mt-4 flex flex-wrap items-center gap-6 text-sm text-muted-foreground">
-                  <div className="flex items-center">
-                    <CheckCircle className="mr-2 h-4 w-4 text-emerald-500" />
-                    <span>Nemt at bruge</span>
-                  </div>
-                  <div className="flex items-center">
-                    <CheckCircle className="mr-2 h-4 w-4 text-emerald-500" />
-                    <span>Hurtig levering</span>
-                  </div>
-                  <div className="flex items-center">
-                    <CheckCircle className="mr-2 h-4 w-4 text-emerald-500" />
-                    <span>Fast og fair pris</span>
-                  </div>
-                </div>
-              </div>
-              <div className="hidden xl:block relative mx-auto aspect-square w-full max-w-[500px] overflow-hidden rounded-xl border border-border bg-muted/50 p-2">
-                <div className="absolute top-2 left-2 right-2 flex h-6 items-center space-x-2 rounded-t-md bg-muted px-3">
-                  <div className="h-2 w-2 rounded-full bg-red-500"></div>
-                  <div className="h-2 w-2 rounded-full bg-yellow-500"></div>
-                  <div className="h-2 w-2 rounded-full bg-green-500"></div>
-                  <div className="ml-2 text-xs text-muted-foreground">noovo.dk</div>
-                </div>
-                <div className="mt-6 h-[458px] w-full overflow-hidden rounded-md">
-                  <Image src="/tech-code-interface.png" width={550} height={550} alt="Visualisering af kodeinterface" className="h-full w-full object-cover" />
-                </div>
+        <section className="w-full py-20 md:py-28">
+          <div className="container px-4 md:px-6 mx-auto">
+            <div className="max-w-4xl">
+              <h1 className="text-4xl font-bold tracking-tight sm:text-6xl">
+                Shopify webshops og websites, der konverterer – enkelt, hurtigt og professionelt.
+              </h1>
+              <p className="mt-6 max-w-2xl text-foreground/70 text-lg">
+                Vi designer og udvikler e‑commerce løsninger med fokus på performance, driftssikkerhed og vedligeholdelse.
+              </p>
+              <div className="mt-8 flex flex-col gap-4 sm:flex-row">
+                <Button asChild size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground">
+                  <Link href="#contact">
+                    Få et uforpligtende tilbud <ArrowRight className="ml-2 h-4 w-4" />
+                  </Link>
+                </Button>
+                <Button asChild variant="outline" size="lg" className="border-foreground text-foreground hover:bg-foreground hover:text-background">
+                  <Link href="#services">Se services</Link>
+                </Button>
               </div>
             </div>
           </div>
         </section>
+        <section id="kunder" className="w-full py-10 border-t border-b border-border scroll-mt-24">
+          <div className="container px-4 md:px-6 mx-auto">
+            <div className="flex flex-wrap items-center justify-center gap-6 sm:justify-between opacity-80">
+              <div className="hidden sm:block"></div>
+              <Image src="/logos/tbmfilm.svg" alt="TBM Film" width={150} height={52} className="h-6.5 sm:h-10 w-auto grayscale" />
+              <Image src="/logos/brdr-omann.png" alt="Murerfirmaet Brdr. Omann" width={150} height={52} className="h-5 sm:h-7.5 w-auto grayscale invert" />
+              <Image src="/logos/mam.png" alt="MAM" width={150} height={52} className="h-5 sm:h-7 w-auto grayscale invert" />
+              <Image src="/logos/gpo.png" alt="GPO" width={150} height={52} className="h-4 sm:h-6 w-auto grayscale invert" />
+              <div className="hidden sm:block"></div>
+            </div>
+          </div>
+        </section>
 
-        <section id="services" className="w-full py-12 md:py-24 lg:py-32 bg-muted/50 relative">
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-muted/20 via-muted/50 to-muted/50 z-0"></div>
-          <div className="container px-4 md:px-6 relative z-10 mx-auto">
+        <section id="services" className="w-full py-12 md:py-24 lg:py-32 scroll-mt-24">
+          <div className="container px-4 md:px-6 mx-auto">
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
-              <div className="inline-flex items-center space-x-2 rounded-full bg-muted px-3 py-1 text-sm text-emerald-500">
+              <div className="inline-flex items-center space-x-2 rounded-full bg-muted px-3 py-1 text-sm text-primary">
                 <span>Løsninger</span>
               </div>
               <div className="space-y-2">
@@ -150,75 +131,61 @@ export default function LandingPage() {
               </div>
             </div>
             <div className="mx-auto grid max-w-5xl items-start gap-6 py-12 lg:grid-cols-2 lg:gap-12">
-              <div className="group relative overflow-hidden rounded-xl border border-border bg-card/50 p-6 transition-all hover:border-emerald-500/50 hover:bg-card">
-                <div className="absolute -right-20 -top-20 h-40 w-40 rounded-full bg-emerald-500/10 blur-3xl transition-all group-hover:bg-emerald-500/20"></div>
+              <div className="relative overflow-hidden rounded-xl border border-border bg-secondary p-6">
                 <div className="flex flex-col gap-4">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-muted text-emerald-500">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-[#111111] text-primary">
                     <Code className="h-6 w-6" />
                   </div>
                   <h3 className="text-xl font-bold">Shopify webshops</h3>
-                  <p className="text-muted-foreground">Få en brugervenlig webshop, der er nem at administrere og klar til at sælge.</p>
+                  <p className="text-foreground/70">Få en brugervenlig webshop, der er nem at administrere og klar til at sælge.</p>
                   <div className="mt-2 flex flex-wrap gap-2">
-                    <span className="inline-flex items-center rounded-full border border-border px-2.5 py-0.5 text-xs text-muted-foreground">Mobilvenlig</span>
-                    <span className="inline-flex items-center rounded-full border border-border px-2.5 py-0.5 text-xs text-muted-foreground">SEO‑klar</span>
-                    <span className="inline-flex items-center rounded-full border border-border px-2.5 py-0.5 text-xs text-muted-foreground">
-                      Let at opdatere
-                    </span>
+                    <span className="inline-flex items-center rounded-full border border-border px-2.5 py-0.5 text-xs text-foreground/70">Mobilvenlig</span>
+                    <span className="inline-flex items-center rounded-full border border-border px-2.5 py-0.5 text-xs text-foreground/70">SEO‑klar</span>
+                    <span className="inline-flex items-center rounded-full border border-border px-2.5 py-0.5 text-xs text-foreground/70">Let at opdatere</span>
                   </div>
                 </div>
               </div>
-              <div className="group relative overflow-hidden rounded-xl border border-border bg-card/50 p-6 transition-all hover:border-emerald-500/50 hover:bg-card">
-                <div className="absolute -right-20 -top-20 h-40 w-40 rounded-full bg-emerald-500/10 blur-3xl transition-all group-hover:bg-emerald-500/20"></div>
+              <div className="relative overflow-hidden rounded-xl border border-border bg-secondary p-6">
                 <div className="flex flex-col gap-4">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-muted text-emerald-500">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-[#111111] text-primary">
                     <ShoppingBag className="h-6 w-6" />
                   </div>
                   <h3 className="text-xl font-bold">Shopify-udvikling</h3>
-                  <p className="text-muted-foreground">Tilpasninger, integrationer og funktioner til din nuværende Shopify‑butik, så den matcher dine behov.</p>
+                  <p className="text-foreground/70">Tilpasninger, integrationer og funktioner til din nuværende Shopify‑butik, så den matcher dine behov.</p>
                   <div className="mt-2 flex flex-wrap gap-2">
-                    <span className="inline-flex items-center rounded-full border border-border px-2.5 py-0.5 text-xs text-muted-foreground">Tilpasninger</span>
-                    <span className="inline-flex items-center rounded-full border border-border px-2.5 py-0.5 text-xs text-muted-foreground">
-                      Integrationer
-                    </span>
-                    <span className="inline-flex items-center rounded-full border border-border px-2.5 py-0.5 text-xs text-muted-foreground">
-                      Automatisering
-                    </span>
+                    <span className="inline-flex items-center rounded-full border border-border px-2.5 py-0.5 text-xs text-foreground/70">Tilpasninger</span>
+                    <span className="inline-flex items-center rounded-full border border-border px-2.5 py-0.5 text-xs text-foreground/70">Integrationer</span>
+                    <span className="inline-flex items-center rounded-full border border-border px-2.5 py-0.5 text-xs text-foreground/70">Automatisering</span>
                   </div>
                 </div>
               </div>
-              <div className="group relative overflow-hidden rounded-xl border border-border bg-card/50 p-6 transition-all hover:border-emerald-500/50 hover:bg-card">
-                <div className="absolute -right-20 -top-20 h-40 w-40 rounded-full bg-emerald-500/10 blur-3xl transition-all group-hover:bg-emerald-500/20"></div>
+              <div className="relative overflow-hidden rounded-xl border border-border bg-secondary p-6">
                 <div className="flex flex-col gap-4">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-muted text-emerald-500">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-[#111111] text-primary">
                     <Globe className="h-6 w-6" />
                   </div>
                   <h3 className="text-xl font-bold">Hjemmesider</h3>
-                  <p className="text-muted-foreground">
+                  <p className="text-foreground/70">
                     Moderne, hurtige og sikre hjemmesider, der præsenterer din virksomhed professionelt – både på mobil og desktop.
                   </p>
                   <div className="mt-2 flex flex-wrap gap-2">
-                    <span className="inline-flex items-center rounded-full border border-border px-2.5 py-0.5 text-xs text-muted-foreground">Design</span>
-                    <span className="inline-flex items-center rounded-full border border-border px-2.5 py-0.5 text-xs text-muted-foreground">Mobilvenlig</span>
-                    <span className="inline-flex items-center rounded-full border border-border px-2.5 py-0.5 text-xs text-muted-foreground">
-                      Let at opdatere
-                    </span>
+                    <span className="inline-flex items-center rounded-full border border-border px-2.5 py-0.5 text-xs text-foreground/70">Design</span>
+                    <span className="inline-flex items-center rounded-full border border-border px-2.5 py-0.5 text-xs text-foreground/70">Mobilvenlig</span>
+                    <span className="inline-flex items-center rounded-full border border-border px-2.5 py-0.5 text-xs text-foreground/70">Let at opdatere</span>
                   </div>
                 </div>
               </div>
-              <div className="group relative overflow-hidden rounded-xl border border-border bg-card/50 p-6 transition-all hover:border-emerald-500/50 hover:bg-card">
-                <div className="absolute -right-20 -top-20 h-40 w-40 rounded-full bg-emerald-500/10 blur-3xl transition-all group-hover:bg-emerald-500/20"></div>
+              <div className="relative overflow-hidden rounded-xl border border-border bg-secondary p-6">
                 <div className="flex flex-col gap-4">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-muted text-emerald-500">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-[#111111] text-primary">
                     <Zap className="h-6 w-6" />
                   </div>
                   <h3 className="text-xl font-bold">Support & vedligeholdelse</h3>
-                  <p className="text-muted-foreground">
-                    Vi holder siden kørende, hjælper med små og store ændringer og rådgiver om, hvad der giver mest værdi.
-                  </p>
+                  <p className="text-foreground/70">Vi holder siden kørende, hjælper med små og store ændringer og rådgiver om, hvad der giver mest værdi.</p>
                   <div className="mt-2 flex flex-wrap gap-2">
-                    <span className="inline-flex items-center rounded-full border border-border px-2.5 py-0.5 text-xs text-muted-foreground">Drift</span>
-                    <span className="inline-flex items-center rounded-full border border-border px-2.5 py-0.5 text-xs text-muted-foreground">Vedligehold</span>
-                    <span className="inline-flex items-center rounded-full border border-border px-2.5 py-0.5 text-xs text-muted-foreground">Rådgivning</span>
+                    <span className="inline-flex items-center rounded-full border border-border px-2.5 py-0.5 text-xs text-foreground/70">Drift</span>
+                    <span className="inline-flex items-center rounded-full border border-border px-2.5 py-0.5 text-xs text-foreground/70">Vedligehold</span>
+                    <span className="inline-flex items-center rounded-full border border-border px-2.5 py-0.5 text-xs text-foreground/70">Rådgivning</span>
                   </div>
                 </div>
               </div>
@@ -231,7 +198,7 @@ export default function LandingPage() {
         <section id="portfolio" className="hidden w-full py-12 md:py-24 lg:py-32 bg-muted/50">
           <div className="container px-4 md:px-6 mx-auto">
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
-              <div className="inline-flex items-center space-x-2 rounded-full bg-muted px-3 py-1 text-sm text-emerald-500">
+              <div className="inline-flex items-center space-x-2 rounded-full bg-muted px-3 py-1 text-sm text-primary">
                 <span>Cases</span>
               </div>
               <div className="space-y-2">
@@ -280,10 +247,7 @@ export default function LandingPage() {
                   tags: ['Next.js', 'Chart.js', 'API'],
                 },
               ].map((project, index) => (
-                <div
-                  key={index}
-                  className="group relative overflow-hidden rounded-xl border border-border bg-card/50 transition-all hover:border-emerald-500/50"
-                >
+                <div key={index} className="group relative overflow-hidden rounded-xl border border-border bg-card/50 transition-all hover:border-primary/50">
                   <div className="aspect-video overflow-hidden">
                     <Image
                       src={project.image || '/placeholder.svg'}
@@ -303,7 +267,7 @@ export default function LandingPage() {
                         </span>
                       ))}
                     </div>
-                    <Button variant="link" className="mt-2 p-0 text-emerald-500 hover:text-emerald-400">
+                    <Button variant="link" className="mt-2 p-0 text-primary hover:text-primary/80">
                       Se case <ArrowRight className="ml-1 h-4 w-4" />
                     </Button>
                   </div>
@@ -313,16 +277,13 @@ export default function LandingPage() {
           </div>
         </section>
 
-        <section id="process" className="w-full py-12 md:py-24 lg:py-32 bg-background relative">
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-muted/10 via-background to-background z-0"></div>
-          <div className="container px-4 md:px-6 relative z-10 mx-auto">
+        <section id="process" className="w-full py-12 md:py-24 lg:py-32 bg-background scroll-mt-24">
+          <div className="container px-4 md:px-6 mx-auto">
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
-              <div className="inline-flex items-center space-x-2 rounded-full bg-muted px-3 py-1 text-sm text-emerald-500">
-                <span>Proces</span>
-              </div>
+              <div className="text-sm uppercase tracking-wider text-foreground/60">Proces</div>
               <div className="space-y-2">
                 <h2 className="text-3xl font-bold tracking-tighter md:text-4xl/tight">Sådan arbejder vi</h2>
-                <p className="mx-auto max-w-[700px] text-muted-foreground md:text-xl">
+                <p className="mx-auto max-w-[700px] text-foreground/70 md:text-xl">
                   En enkel og gennemsigtig proces fra første snak til lancering – uden teknisk bøvl.
                 </p>
               </div>
@@ -357,11 +318,13 @@ export default function LandingPage() {
                 ].map((step, index) => (
                   <div key={index} className="relative rounded-xl border border-border bg-card/50 p-6">
                     <div className="flex items-center gap-3">
-                      <div className="flex h-10 w-10 items-center justify-center rounded-full bg-emerald-500/10 text-emerald-500">{step.icon}</div>
-                      <span className="flex h-6 w-6 items-center justify-center rounded-full bg-emerald-500 text-xs font-bold text-white">{index + 1}</span>
+                      <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#111111] text-primary">{step.icon}</div>
+                      <span className="flex h-6 w-6 items-center justify-center rounded-full bg-primary text-xs font-bold text-primary-foreground">
+                        {index + 1}
+                      </span>
                     </div>
                     <h3 className="mt-4 text-lg font-bold">{step.title}</h3>
-                    <p className="mt-2 text-sm text-muted-foreground">{step.description}</p>
+                    <p className="mt-2 text-sm text-foreground/70">{step.description}</p>
                   </div>
                 ))}
               </div>
@@ -372,7 +335,7 @@ export default function LandingPage() {
         <section id="testimonials" className="hidden w-full py-12 md:py-24 lg:py-32 bg-muted/50">
           <div className="container px-4 md:px-6 mx-auto">
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
-              <div className="inline-flex items-center space-x-2 rounded-full bg-muted px-3 py-1 text-sm text-emerald-500">
+              <div className="inline-flex items-center space-x-2 rounded-full bg-muted px-3 py-1 text-sm text-primary">
                 <span>Kundeudtalelser</span>
               </div>
               <div className="space-y-2">
@@ -406,10 +369,10 @@ export default function LandingPage() {
               ].map((testimonial, index) => (
                 <div
                   key={index}
-                  className="flex flex-col justify-between rounded-xl border border-border bg-card/50 p-6 transition-all hover:border-emerald-500/50"
+                  className="flex flex-col justify-between rounded-xl border border-border bg-card/50 p-6 transition-all hover:border-primary/50"
                 >
                   <div>
-                    <div className="flex gap-0.5 text-emerald-500">
+                    <div className="flex gap-0.5 text-primary">
                       {Array(testimonial.rating)
                         .fill(0)
                         .map((_, i) => (
@@ -434,15 +397,12 @@ export default function LandingPage() {
           </div>
         </section>
 
-        <section id="contact" className="w-full py-12 md:py-24 lg:py-32 bg-muted/50 relative">
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-muted/20 via-muted/50 to-muted/50 z-0"></div>
-          <div className="container grid items-center gap-6 px-4 md:px-6 lg:grid-cols-2 lg:gap-10 relative z-10 mx-auto">
+        <section id="contact" className="w-full py-12 md:py-24 lg:py-32 scroll-mt-24">
+          <div className="container grid items-center gap-6 px-4 md:px-6 lg:grid-cols-2 lg:gap-10 mx-auto">
             <div className="space-y-2">
-              <div className="inline-flex items-center space-x-2 rounded-full bg-muted px-3 py-1 text-sm text-emerald-500">
-                <span>Kontakt os</span>
-              </div>
+              <div className="text-sm uppercase tracking-wider text-foreground/60">Kontakt os</div>
               <h2 className="text-3xl font-bold tracking-tighter md:text-4xl/tight">Skal vi hjælpe jer i gang?</h2>
-              <p className="max-w-[600px] text-muted-foreground md:text-xl">Fortæl kort om jeres behov – vi vender hurtigt tilbage med forslag og pris.</p>
+              <p className="max-w-[600px] text-foreground/70 md:text-xl">Fortæl kort om jeres behov – vi vender hurtigt tilbage med forslag og pris.</p>
               <div className="mt-6 space-y-4">
                 {/* <div className="flex items-center gap-2">
                   <div className="flex h-10 w-10 items-center justify-center rounded-full border border-border bg-card/50 text-emerald-500">
@@ -454,7 +414,7 @@ export default function LandingPage() {
                   </div>
                 </div> */}
                 <div className="flex items-center gap-2">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-full border border-border bg-card/50 text-emerald-500">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-full border border-border bg-card/50 text-primary">
                     <Mail className="h-5 w-5" />
                   </div>
                   <div>
@@ -471,14 +431,14 @@ export default function LandingPage() {
       <footer className="w-full border-t border-border py-6 md:py-0">
         <div className="container flex flex-col items-center justify-between gap-4 md:h-24 md:flex-row mx-auto">
           <div className="flex items-center gap-2">
-            <Terminal className="h-6 w-6 text-emerald-500" />
+            <Terminal className="h-6 w-6 text-primary" />
             <p className="text-sm font-medium">© {new Date().getFullYear()} Noovo. Alle rettigheder forbeholdes.</p>
           </div>
           <div className="flex gap-4">
-            <Link href="#" className="text-sm font-medium text-muted-foreground hover:text-emerald-500 transition-colors">
+            <Link href="#" className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors">
               Privatlivspolitik
             </Link>
-            <Link href="#" className="text-sm font-medium text-muted-foreground hover:text-emerald-500 transition-colors">
+            <Link href="#" className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors">
               Vilkår for tjenesten
             </Link>
             <CookieSettingsLink />

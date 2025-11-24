@@ -95,7 +95,7 @@ export function ContactForm() {
           <Textarea id="message" placeholder="Fortæl os om dit projekt" className="min-h-[120px] bg-background/50" value={message} onChange={(e) => setMessage(e.target.value)} required />
         </div>
       </div>
-      <Button size="lg" className="w-full bg-emerald-500 hover:bg-emerald-600 text-white" disabled={isSubmitting}>
+      <Button size="lg" className="w-full bg-primary hover:bg-primary/90 text-primary-foreground" disabled={isSubmitting}>
         {isSubmitting ? 'Sender…' : 'Send besked'}
       </Button>
     </form>

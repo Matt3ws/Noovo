@@ -25,18 +25,21 @@ export function MobileMenu() {
         <SheetHeader>
           <SheetTitle className="flex items-center gap-2 text-left">
             <span className="text-xl font-bold">
-              Noovo<span className="text-emerald-500">.</span>
+              Noovo<span className="text-primary">.</span>
             </span>
           </SheetTitle>
         </SheetHeader>
         <nav className="mt-8 flex flex-col gap-6">
-          <Link href="#services" className="text-base font-medium text-muted-foreground hover:text-emerald-500 transition-colors" onClick={handleLinkClick}>
-            Løsninger
+          <Link href="#kunder" className="text-base font-medium text-muted-foreground hover:text-primary transition-colors" onClick={handleLinkClick}>
+            Kunder
           </Link>
-          <Link href="#process" className="text-base font-medium text-muted-foreground hover:text-emerald-500 transition-colors" onClick={handleLinkClick}>
+          <Link href="#services" className="text-base font-medium text-muted-foreground hover:text-primary transition-colors" onClick={handleLinkClick}>
+            Services
+          </Link>
+          <Link href="#process" className="text-base font-medium text-muted-foreground hover:text-primary transition-colors" onClick={handleLinkClick}>
             Proces
           </Link>
-          <Link href="#contact" className="text-base font-medium text-muted-foreground hover:text-emerald-500 transition-colors" onClick={handleLinkClick}>
+          <Link href="#contact" className="text-base font-medium text-muted-foreground hover:text-primary transition-colors" onClick={handleLinkClick}>
             Kontakt
           </Link>
         </nav>

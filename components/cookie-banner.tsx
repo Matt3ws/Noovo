@@ -137,7 +137,7 @@ export function CookieBanner() {
                 <Button variant="outline" onClick={saveSelection}>
                   Gem valg
                 </Button>
-                <Button className="bg-emerald-600 hover:bg-emerald-700 text-white" onClick={acceptAll}>
+                <Button className="bg-primary hover:bg-primary/90 text-primary-foreground" onClick={acceptAll}>
                   Acceptér alle
                 </Button>
               </div>

@@ -7,7 +7,7 @@ export function CookieSettingsLink() {
     }
   }
   return (
-    <button type="button" onClick={open} className="text-sm cursor-pointer font-medium text-muted-foreground hover:text-emerald-500 transition-colors">
+    <button type="button" onClick={open} className="text-sm cursor-pointer font-medium text-muted-foreground hover:text-primary transition-colors">
       Cookieindstillinger
     </button>
   );

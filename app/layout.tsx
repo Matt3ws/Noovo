@@ -4,7 +4,6 @@ import type { Metadata } from 'next';
 import './globals.css';
 //import Header from "@/components/layout/header";
 //import Footer from "@/components/layout/footer";
-import { ThemeProvider } from '@/providers/theme-provider';
 import { Toaster } from '@/components/ui/toaster';
 import { CookieBanner } from '@/components/cookie-banner';
 
@@ -78,27 +77,25 @@ export const metadata: Metadata = {
       'max-video-preview': -1,
     },
   },
-  themeColor: [
-    { media: '(prefers-color-scheme: light)', color: '#ffffff' },
-    { media: '(prefers-color-scheme: dark)', color: '#0a0a0a' },
-  ],
+  themeColor: '#000000',
   authors: [{ name: 'Noovo', url: 'https://noovo.dk' }],
   creator: 'Noovo',
   publisher: 'Noovo',
   category: 'technology',
+  icons: {
+    icon: [{ url: '/icon.svg', type: 'image/svg+xml' }],
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="da" className="scroll-smooth" suppressHydrationWarning>
       <body className={`${geistSans.className} antialiased`}>
-        <ThemeProvider attribute="class" defaultTheme="dark" disableTransitionOnChange>
-          {/*<Header />*/}
-          <main className="pt-[var(--header-height)]">{children}</main>
-          {/*<Footer />*/}
-          <CookieBanner />
-          <Toaster />
-        </ThemeProvider>
+        {/*<Header />*/}
+        <main className="pt-[var(--header-height)]">{children}</main>
+        {/*<Footer />*/}
+        <CookieBanner />
+        <Toaster />
       </body>
     </html>
   );
