@@ -111,7 +111,7 @@ export default function LandingPage() {
               <Image src="/logos/tbmfilm.svg" alt="TBM Film" width={150} height={52} className="h-6.5 sm:h-10 w-auto grayscale" />
               <Image src="/logos/brdr-omann.png" alt="Murerfirmaet Brdr. Omann" width={150} height={52} className="h-5 sm:h-7.5 w-auto grayscale invert" />
               <Image src="/logos/mam.png" alt="MAM" width={150} height={52} className="h-5 sm:h-7 w-auto grayscale invert" />
-              <Image src="/logos/gpo.png" alt="GPO" width={150} height={52} className="h-4 sm:h-6 w-auto grayscale invert" />
+              <Image src="/logos/GPO-logo.png" alt="GPO" width={150} height={52} className="h-4 sm:h-6 w-auto grayscale invert" />
               <div className="hidden sm:block"></div>
             </div>
           </div>
