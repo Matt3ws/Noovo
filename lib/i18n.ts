@@ -84,7 +84,6 @@ export function initI18n() {
         interpolation: { escapeValue: false },
       });
   } else {
-    // @ts-expect-error detector typing is loose
     i18n.services?.languageDetector?.init(detection);
   }
 
