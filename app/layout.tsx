@@ -17,9 +17,75 @@ const geistSans = Geist({
 });
 
 export const metadata: Metadata = {
-  title: 'Højtydende websites og Shopify‑apps, skræddersyet – Noovo',
+  metadataBase: new URL('https://noovo.dk'),
+  title: {
+    default: 'Shopify webshops og hjemmesider, der er nemme at bruge – Noovo',
+    template: '%s – Noovo',
+  },
   description:
-    'Noovo er et webstudio, der specialiserer sig i hurtige, moderne websites og Shopify webshops og skæredesyet Next.js hjemmesider. Fra skræddersyede storefronts til fuldstack‑løsninger bygger vi digitale oplevelser, der konverterer.',
+    'Noovo er et webstudio, der specialiserer sig i hurtige, moderne websites og Shopify webshops samt skræddersyede Next.js hjemmesider. Fra custom storefronts til fuldstack‑løsninger bygger vi digitale oplevelser, der konverterer.',
+  keywords: [
+    'Noovo',
+    'webstudio',
+    'webbureau',
+    'Shopify',
+    'Shopify udvikling',
+    'Shopify webshops',
+    'Next.js',
+    'hjemmeside',
+    'webudvikling',
+    'hastighed',
+    'SEO',
+    'headless',
+    'e-handel',
+    'Danmark',
+  ],
+  alternates: {
+    canonical: '/',
+  },
+  openGraph: {
+    type: 'website',
+    locale: 'da_DK',
+    url: 'https://noovo.dk/',
+    siteName: 'Noovo',
+    title: 'Shopify webshops og hjemmesider, der er nemme at bruge – Noovo',
+    description:
+      'Noovo er et webstudio, der specialiserer sig i hurtige, moderne websites og Shopify webshops samt skræddersyede Next.js hjemmesider. Fra custom storefronts til fuldstack‑løsninger bygger vi digitale oplevelser, der konverterer.',
+    images: [
+      {
+        url: '/tech-code-interface.png',
+        width: 1200,
+        height: 630,
+        alt: 'Noovo – moderne websites og Shopify‑apps',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Shopify webshops og hjemmesider, der er nemme at bruge – Noovo',
+    description: 'Vi bygger hurtige, moderne websites og Shopify‑løsninger, der konverterer.',
+    images: ['/tech-code-interface.png'],
+    creator: '@noovo_dk',
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+      'max-video-preview': -1,
+    },
+  },
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: '#ffffff' },
+    { media: '(prefers-color-scheme: dark)', color: '#0a0a0a' },
+  ],
+  authors: [{ name: 'Noovo', url: 'https://noovo.dk' }],
+  creator: 'Noovo',
+  publisher: 'Noovo',
+  category: 'technology',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
