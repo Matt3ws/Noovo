@@ -3,11 +3,9 @@ import Image from 'next/image';
 import { ArrowRight, Code, ShoppingBag, Zap, CheckCircle, Users, BarChart, Terminal, Globe, Mail } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { ThemeToggle } from '@/components/theme-toggle';
 import { MobileMenu } from '@/components/mobile-menu';
+import { ContactForm } from '@/components/contact-form';
 
 export default function LandingPage() {
   return (
@@ -425,55 +423,7 @@ export default function LandingPage() {
                 </div>
               </div>
             </div>
-            <div className="flex flex-col gap-4 rounded-xl border border-border bg-card/50 p-6">
-              <div className="grid gap-4">
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="space-y-2">
-                    <label htmlFor="first-name" className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
-                      Fornavn
-                    </label>
-                    <Input id="first-name" placeholder="Indtast dit fornavn" className="bg-background/50" />
-                  </div>
-                  <div className="space-y-2">
-                    <label htmlFor="last-name" className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
-                      Efternavn
-                    </label>
-                    <Input id="last-name" placeholder="Indtast dit efternavn" className="bg-background/50" />
-                  </div>
-                </div>
-                <div className="space-y-2">
-                  <label htmlFor="email" className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
-                    E‑mail
-                  </label>
-                  <Input id="email" type="email" placeholder="Indtast din e‑mail" className="bg-background/50" />
-                </div>
-                <div className="space-y-2">
-                  <label htmlFor="project-type" className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
-                    Projekttype
-                  </label>
-                  <Select>
-                    <SelectTrigger className="bg-background/50">
-                      <SelectValue placeholder="Vælg projekttype" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="webshop">Ny webshop</SelectItem>
-                      <SelectItem value="website">Ny hjemmeside</SelectItem>
-                      <SelectItem value="development">Udvikling/tilpasning</SelectItem>
-                      <SelectItem value="other">Andet</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-                <div className="space-y-2">
-                  <label htmlFor="message" className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
-                    Besked
-                  </label>
-                  <Textarea id="message" placeholder="Fortæl os om dit projekt" className="min-h-[120px] bg-background/50" />
-                </div>
-              </div>
-              <Button size="lg" className="w-full bg-emerald-500 hover:bg-emerald-600 text-white">
-                Send besked
-              </Button>
-            </div>
+            <ContactForm />
           </div>
         </section>
       </main>
