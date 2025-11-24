@@ -41,9 +41,9 @@ export function saveConsent(consent: Partial<Omit<Consent, 'necessary' | 'update
   const current = getConsent();
   const next: Consent = {
     necessary: true,
-    preferences: !!consent.preferences ?? current?.preferences ?? false,
-    statistics: !!consent.statistics ?? current?.statistics ?? false,
-    marketing: !!consent.marketing ?? current?.marketing ?? false,
+    preferences: consent.preferences ?? current?.preferences ?? false,
+    statistics: consent.statistics ?? current?.statistics ?? false,
+    marketing: consent.marketing ?? current?.marketing ?? false,
     updatedAt: new Date().toISOString(),
   };
   localStorage.setItem(CONSENT_KEY, JSON.stringify(next));
