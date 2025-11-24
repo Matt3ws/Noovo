@@ -418,7 +418,7 @@ export default function LandingPage() {
                   </div>
                   <div>
                     <p className="text-sm text-muted-foreground">Skriv til os</p>
-                    <p className="font-medium">hello@noovo.dk</p>
+                    <p className="font-medium">hej@noovo.dk</p>
                   </div>
                 </div>
               </div>
