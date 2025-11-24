@@ -6,6 +6,7 @@ import './globals.css';
 //import Footer from "@/components/layout/footer";
 import { ThemeProvider } from '@/providers/theme-provider';
 import { Toaster } from '@/components/ui/toaster';
+import { CookieBanner } from '@/components/cookie-banner';
 
 import { Geist } from 'next/font/google';
 import './globals.css';
@@ -29,6 +30,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           {/*<Header />*/}
           <main className="pt-[var(--header-height)]">{children}</main>
           {/*<Footer />*/}
+          <CookieBanner />
           <Toaster />
         </ThemeProvider>
       </body>

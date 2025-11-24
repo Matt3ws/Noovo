@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { ThemeToggle } from '@/components/theme-toggle';
 import { MobileMenu } from '@/components/mobile-menu';
 import { ContactForm } from '@/components/contact-form';
+import { CookieSettingsLink } from '@/components/cookie-settings-link';
 
 export default function LandingPage() {
   return (
@@ -46,7 +47,7 @@ export default function LandingPage() {
             <div className="grid gap-8 xl:grid-cols-[1fr_600px] xl:gap-12">
               <div className="flex flex-col justify-center space-y-8">
                 <div className="inline-flex items-center max-w-max space-x-2 rounded-full bg-muted px-3 py-1 text-sm text-emerald-500">
-                  <span>Webshops & hjemmesider</span>
+                  <span>Webshops & Hjemmesider</span>
                 </div>
                 <div className="space-y-6">
                   <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none">Vi bygger webshops og hjemmesider, der er nemme at bruge</h1>
@@ -440,6 +441,7 @@ export default function LandingPage() {
             <Link href="#" className="text-sm font-medium text-muted-foreground hover:text-emerald-500 transition-colors">
               Vilkår for tjenesten
             </Link>
+            <CookieSettingsLink />
           </div>
         </div>
       </footer>
