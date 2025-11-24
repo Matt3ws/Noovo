@@ -440,9 +440,6 @@ export default function LandingPage() {
             <Link href="#" className="text-sm font-medium text-muted-foreground hover:text-emerald-500 transition-colors">
               Vilkår for tjenesten
             </Link>
-            <Link href="#" className="text-sm font-medium text-muted-foreground hover:text-emerald-500 transition-colors">
-              Karriere
-            </Link>
           </div>
         </div>
       </footer>
