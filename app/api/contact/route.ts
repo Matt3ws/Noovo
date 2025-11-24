@@ -40,16 +40,16 @@ export async function POST(req: Request) {
       </div>
     `;
 
-    const result = await resend.emails.send({
+    const { error } = await resend.emails.send({
       from: process.env.CONTACT_FROM_EMAIL || 'no-reply@resend.dev',
       to,
-      reply_to: email,
+      replyTo: email,
       subject,
       html,
     });
 
-    if ((result as any)?.error) {
-      const errorMessage = (result as any).error?.message || 'Email failed';
+    if (error) {
+      const errorMessage = error.message || 'Email failed';
       return NextResponse.json({ error: errorMessage }, { status: 500 });
     }
 
@@ -59,5 +59,3 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: message }, { status: 500 });
   }
 }
-
-
