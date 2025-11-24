@@ -18,7 +18,7 @@ export function MobileMenu() {
       <SheetTrigger asChild>
         <Button variant="ghost" size="icon" className="md:hidden">
           <Menu className="h-6 w-6" />
-          <span className="sr-only">Toggle menu</span>
+          <span className="sr-only">Åbn/luk menu</span>
         </Button>
       </SheetTrigger>
       <SheetContent side="left" className="w-[300px] sm:w-[350px]">
@@ -31,22 +31,13 @@ export function MobileMenu() {
         </SheetHeader>
         <nav className="mt-8 flex flex-col gap-6">
           <Link href="#services" className="text-base font-medium text-muted-foreground hover:text-emerald-500 transition-colors" onClick={handleLinkClick}>
-            Services
-          </Link>
-          <Link href="#portfolio" className="text-base font-medium text-muted-foreground hover:text-emerald-500 transition-colors" onClick={handleLinkClick}>
-            Portfolio
-          </Link>
-          <Link href="#tech-stack" className="text-base font-medium text-muted-foreground hover:text-emerald-500 transition-colors" onClick={handleLinkClick}>
-            Tech Stack
+            Løsninger
           </Link>
           <Link href="#process" className="text-base font-medium text-muted-foreground hover:text-emerald-500 transition-colors" onClick={handleLinkClick}>
-            Process
-          </Link>
-          <Link href="#testimonials" className="text-base font-medium text-muted-foreground hover:text-emerald-500 transition-colors" onClick={handleLinkClick}>
-            Testimonials
+            Proces
           </Link>
           <Link href="#contact" className="text-base font-medium text-muted-foreground hover:text-emerald-500 transition-colors" onClick={handleLinkClick}>
-            Contact
+            Kontakt
           </Link>
         </nav>
       </SheetContent>
