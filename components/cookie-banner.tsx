@@ -62,7 +62,6 @@ export function CookieBanner() {
   function finalize() {
     setVisible(false);
     const i18n = initI18n();
-    // @ts-expect-error detector typing is loose
     i18n.services?.languageDetector?.cacheUserLanguage(i18n.language);
   }
 
