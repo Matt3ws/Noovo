@@ -6,7 +6,6 @@ import './globals.css';
 //import Footer from "@/components/layout/footer";
 import { Toaster } from '@/components/ui/toaster';
 import { CookieBanner } from '@/components/cookie-banner';
-import Script from 'next/script';
 
 import { Geist } from 'next/font/google';
 import './globals.css';
@@ -89,16 +88,9 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  const recaptchaSiteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
   return (
     <html lang="da" className="scroll-smooth" suppressHydrationWarning>
       <body className={`${geistSans.className} antialiased`}>
-        {recaptchaSiteKey ? (
-          <Script
-            src={`https://www.google.com/recaptcha/api.js?render=${recaptchaSiteKey}`}
-            strategy="afterInteractive"
-          />
-        ) : null}
         {/*<Header />*/}
         <main className="pt-[var(--header-height)]">{children}</main>
         {/*<Footer />*/}

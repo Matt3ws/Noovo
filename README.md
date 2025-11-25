@@ -1,58 +1,153 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+## Noovo – Website
 
-## Getting Started
+This repository contains the Noovo website built with Next.js App Router, TypeScript, Tailwind CSS (v4), and a small set of reusable UI components. It includes a contact form that sends emails via Resend, dark/light theme support, a cookie banner, and SEO primitives (metadata, robots, sitemap).
 
-First, run the development server:
+## Quick start
+
+1. Install prerequisites
+
+- **Node**: 18+ (recommended)
+- **Package manager**: npm (default) or pnpm/yarn
+
+2. Install dependencies
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+3. Set environment variables (for the contact form)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-
-## reCAPTCHA v3 Setup
-
-This project integrates Google reCAPTCHA v3 on the contact form.
-
-1. Create keys in Google reCAPTCHA Admin for v3.
-2. Add these environment variables (e.g. in `.env.local`):
+Create a `.env.local` in the project root:
 
 ```bash
-NEXT_PUBLIC_RECAPTCHA_SITE_KEY=your_recaptcha_site_key
-RECAPTCHA_SECRET_KEY=your_recaptcha_secret_key
-# Optional: default 0.5
-RECAPTCHA_MIN_SCORE=0.5
-
-# Existing email settings
 RESEND_API_KEY=your_resend_api_key
 CONTACT_TO_EMAIL=recipient@example.com
 # Optional
 CONTACT_FROM_EMAIL=no-reply@example.com
 ```
 
-3. Deploy with the same variables set in your hosting provider.
+4. Start the dev server
+
+```bash
+npm run dev
+```
+
+Visit `http://localhost:3000`.
+
+## Scripts
+
+```bash
+# Start local dev server
+npm run dev
+
+# Build production bundle
+npm run build
+
+# Start production server (after build)
+npm run start
+
+# Lint the codebase
+npm run lint
+```
+
+## Tech stack
+
+- **Framework**: Next.js (App Router) with React and TypeScript
+- **Styling**: Tailwind CSS v4, utility-first styling
+- **UI**: Radix primitives and a local `components/ui` library (shadcn-style)
+- **Theming**: `next-themes` with a theme toggle and provider
+- **Forms/UX**: `react-hook-form` (available), `useToast` to show toasts
+- **Email**: Resend for contact form delivery
+- **SEO**: Metadata, `robots.ts`, `sitemap.ts`
+
+## Project structure
+
+```
+app/
+  api/
+    contact/
+      route.ts        # POST /api/contact → sends email via Resend
+  layout.tsx          # Root layout with metadata, fonts, providers
+  page.tsx            # Landing/home page
+  globals.css         # Global styles (Tailwind)
+  robots.ts           # Robots.txt via Next.js route file
+  sitemap.ts          # Sitemap via Next.js route file
+
+components/
+  contact-form.tsx    # Client contact form (posts to /api/contact)
+  cookie-banner.tsx   # Cookie consent banner
+  cookie-settings-link.tsx
+  mobile-menu.tsx, theme-toggle.tsx, ...
+  ui/                 # Reusable UI components (buttons, inputs, etc.)
+
+hooks/
+  use-toast.ts        # Toast helper
+  use-mobile.tsx      # Small responsive helper
+
+lib/
+  i18n.ts             # i18n initialization helpers
+  utils.ts            # Common utilities (e.g., cn/class helpers)
+
+providers/
+  theme-provider.tsx  # Theme provider using next-themes
+
+public/
+  ...                 # Static assets (images, logos)
+```
+
+## Architecture overview
+
+- **App Router**: Pages and API routes live under `app/`. The root layout (`app/layout.tsx`) sets global metadata, fonts, and wraps the app with providers like the theme and toast.
+- **Styling**: Tailwind v4 powers styling. Global styles are in `app/globals.css`. Most components use Tailwind class utilities.
+- **UI components**: Common primitives exist in `components/ui/` (shadcn-style). Build new pages by composing these.
+- **Theming**: Dark/light mode via `next-themes`. The provider is in `providers/theme-provider.tsx`, with a toggle in `components/theme-toggle.tsx`.
+- **Cookies**: A simple cookie banner is provided by `components/cookie-banner.tsx`.
+- **i18n**: `lib/i18n.ts` initializes i18n and exposes helpers. You can expand locales and usage as needed.
+- **SEO**: App-wide metadata lives in `app/layout.tsx`. `app/robots.ts` and `app/sitemap.ts` generate SEO artifacts dynamically.
+
+## Contact form flow
+
+- **Client**: `components/contact-form.tsx` collects user inputs and posts to `/api/contact`.
+- **Server**: `app/api/contact/route.ts` validates inputs and sends an email using Resend.
+- **Required env**: `RESEND_API_KEY`, `CONTACT_TO_EMAIL` (and optional `CONTACT_FROM_EMAIL`).
+- **No reCAPTCHA**: The form is currently configured without reCAPTCHA.
+
+## Working with UI components
+
+- **Location**: `components/ui/` holds buttons, inputs, dialogs, and other primitives (built on Radix).
+- **Composition**: Prefer reusing these building blocks rather than creating bespoke styles per page.
+- **Conventions**:
+  - Keep components stateless when possible; lift state to parent where needed.
+  - Use descriptive prop names and keep components small and focused.
+
+## Code quality
+
+- **TypeScript**: Use clear names and explicit types for public APIs.
+- **ESLint**: `npm run lint` uses Next’s ESLint config to enforce consistent code quality.
+- **Formatting**: Follow the code style: readable variable names, minimal nesting, early returns.
+- **Folder hygiene**: Keep page-specific components near their usage or in a feature folder; keep reusable elements in `components/ui/` or a shared `components/` subfolder.
+
+## Deployment
+
+- **Recommended**: Vercel (optimized for Next.js).
+- **Build**: `npm run build` → `npm run start`.
+- **Environment**: Ensure `RESEND_API_KEY`, `CONTACT_TO_EMAIL`, and (optional) `CONTACT_FROM_EMAIL` are set in your hosting provider.
+
+## Troubleshooting
+
+- **Emails not sending**
+  - Ensure `RESEND_API_KEY` is valid.
+  - Ensure `CONTACT_TO_EMAIL` is set and is a permitted recipient per your Resend account settings.
+- **Build errors**
+  - Make sure Node 18+ is used locally and in CI/deployment.
+  - Run `npm run lint` to catch common issues.
+- **Styling doesn’t apply**
+  - Ensure Tailwind is correctly installed and `app/globals.css` is included in `app/layout.tsx`.
+
+## Contributing and extending
+
+- Add new UI primitives to `components/ui/` or compose existing ones.
+- Extend pages under `app/` following the App Router conventions.
+- Keep business logic in server routes (`app/api/...`) and reusable utilities in `lib/`.
+
+If you have questions or want to propose improvements, feel free to open an issue or PR.

@@ -8,15 +8,6 @@ import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { useToast } from '@/hooks/use-toast';
 
-declare global {
-  interface Window {
-    grecaptcha?: {
-      ready(callback: () => void): void;
-      execute(siteKey: string, options: { action: string }): Promise<string>;
-    };
-  }
-}
-
 export function ContactForm() {
   const { toast } = useToast();
   const [firstName, setFirstName] = useState('');
@@ -25,24 +16,6 @@ export function ContactForm() {
   const [projectType, setProjectType] = useState<string | undefined>();
   const [message, setMessage] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
-
-  const recaptchaSiteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
-
-  async function getRecaptchaToken(): Promise<string> {
-    if (!recaptchaSiteKey) {
-      throw new Error('reCAPTCHA er ikke konfigureret.');
-    }
-    if (typeof window === 'undefined' || !window.grecaptcha) {
-      // Script not yet ready
-      throw new Error('Sikkerhedstjek er ikke klar. Prøv igen om et øjeblik.');
-    }
-    await new Promise<void>((resolve) => window.grecaptcha!.ready(resolve));
-    const token = await window.grecaptcha!.execute(recaptchaSiteKey, { action: 'contact' });
-    if (!token) {
-      throw new Error('Kunne ikke generere reCAPTCHA token.');
-    }
-    return token;
-  }
 
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -55,11 +28,10 @@ export function ContactForm() {
     }
     setIsSubmitting(true);
     try {
-      const recaptchaToken = await getRecaptchaToken();
       const res = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ firstName, lastName, email, projectType, message, recaptchaToken }),
+        body: JSON.stringify({ firstName, lastName, email, projectType, message }),
       });
       const json = await res.json();
       if (!res.ok) throw new Error(json?.error || 'Der opstod en fejl.');
