@@ -1,5 +1,5 @@
 import type React from 'react';
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 
 import './globals.css';
 //import Header from "@/components/layout/header";
@@ -77,7 +77,6 @@ export const metadata: Metadata = {
       'max-video-preview': -1,
     },
   },
-  themeColor: '#000000',
   authors: [{ name: 'Noovo', url: 'https://noovo.dk' }],
   creator: 'Noovo',
   publisher: 'Noovo',
@@ -85,6 +84,10 @@ export const metadata: Metadata = {
   icons: {
     icon: [{ url: '/icon.svg', type: 'image/svg+xml' }],
   },
+};
+
+export const viewport: Viewport = {
+  themeColor: '#000000',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
