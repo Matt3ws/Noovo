@@ -87,10 +87,10 @@ export function CookieBanner() {
               <div className="rounded-lg border border-border p-3">
                 <div className="flex items-center justify-between">
                   <div className="space-y-1">
-                    <Label className="text-sm font-medium">Nødvendige</Label>
+                    <Label htmlFor="necessary" className="text-sm font-medium">Nødvendige</Label>
                     <p className="text-xs text-muted-foreground">Altid aktiveret – krævet for at websitet fungerer.</p>
                   </div>
-                  <Switch checked disabled />
+                  <Switch id="necessary" checked disabled />
                 </div>
               </div>
 
