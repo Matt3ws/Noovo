@@ -20,7 +20,7 @@ export default function LandingPage() {
             '@type': 'Organization',
             name: 'Noovo',
             url: 'https://noovo.dk',
-            logo: 'https://noovo.dk/placeholder-logo.png',
+            logo: 'https://noovo.dk/logo-icon.svg',
             contactPoint: [
               {
                 '@type': 'ContactPoint',

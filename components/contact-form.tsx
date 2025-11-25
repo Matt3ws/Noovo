@@ -17,6 +17,24 @@ export function ContactForm() {
   const [message, setMessage] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  const recaptchaSiteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
+
+  async function getRecaptchaToken(): Promise<string> {
+    if (!recaptchaSiteKey) {
+      throw new Error('reCAPTCHA er ikke konfigureret.');
+    }
+    if (typeof window === 'undefined' || !(window as any).grecaptcha) {
+      // Script not yet ready
+      throw new Error('Sikkerhedstjek er ikke klar. Prøv igen om et øjeblik.');
+    }
+    await new Promise((resolve) => (window as any).grecaptcha.ready(resolve));
+    const token = await (window as any).grecaptcha.execute(recaptchaSiteKey, { action: 'contact' });
+    if (!token) {
+      throw new Error('Kunne ikke generere reCAPTCHA token.');
+    }
+    return token;
+  }
+
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (!firstName || !email || !message) {
@@ -28,10 +46,11 @@ export function ContactForm() {
     }
     setIsSubmitting(true);
     try {
+      const recaptchaToken = await getRecaptchaToken();
       const res = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ firstName, lastName, email, projectType, message }),
+        body: JSON.stringify({ firstName, lastName, email, projectType, message, recaptchaToken }),
       });
       const json = await res.json();
       if (!res.ok) throw new Error(json?.error || 'Der opstod en fejl.');

@@ -11,6 +11,7 @@ export async function POST(req: Request) {
     const email = (data.email || '').trim();
     const projectType = (data.projectType || '').trim();
     const message = (data.message || '').trim();
+    const recaptchaToken = (data.recaptchaToken || '').trim();
 
     if (!firstName || !email || !message) {
       return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
@@ -18,6 +19,49 @@ export async function POST(req: Request) {
 
     if (!/^\S+@\S+\.\S+$/.test(email)) {
       return NextResponse.json({ error: 'Invalid email' }, { status: 400 });
+    }
+
+    // Verify reCAPTCHA v3 token (unless explicitly skipped with env)
+    const skipRecaptcha = process.env.RECAPTCHA_SKIP_VERIFY === 'true';
+    if (!skipRecaptcha) {
+      if (!recaptchaToken) {
+        return NextResponse.json({ error: 'reCAPTCHA token missing' }, { status: 400 });
+      }
+      const recaptchaSecret = process.env.RECAPTCHA_SECRET_KEY;
+      if (!recaptchaSecret) {
+        return NextResponse.json({ error: 'reCAPTCHA not configured' }, { status: 500 });
+      }
+      const ip =
+        req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ||
+        req.headers.get('x-real-ip')?.trim() ||
+        undefined;
+      const params = new URLSearchParams();
+      params.set('secret', recaptchaSecret);
+      params.set('response', recaptchaToken);
+      if (ip) params.set('remoteip', ip);
+      const verifyRes = await fetch('https://www.google.com/recaptcha/api/siteverify', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: params.toString(),
+      });
+      const verifyJson = (await verifyRes.json()) as {
+        success: boolean;
+        score?: number;
+        action?: string;
+        hostname?: string;
+        'error-codes'?: string[];
+      };
+      if (!verifyJson.success) {
+        const codes = verifyJson['error-codes']?.join(', ') || 'verification_failed';
+        return NextResponse.json({ error: `reCAPTCHA failed (${codes})` }, { status: 400 });
+      }
+      const minScore = Number(process.env.RECAPTCHA_MIN_SCORE || '0.5');
+      if (typeof verifyJson.score === 'number' && verifyJson.score < minScore) {
+        return NextResponse.json({ error: 'reCAPTCHA score too low' }, { status: 400 });
+      }
+      if (verifyJson.action && verifyJson.action !== 'contact') {
+        return NextResponse.json({ error: 'Invalid reCAPTCHA action' }, { status: 400 });
+      }
     }
 
     if (!process.env.RESEND_API_KEY) {

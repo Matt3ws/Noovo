@@ -34,3 +34,25 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## reCAPTCHA v3 Setup
+
+This project integrates Google reCAPTCHA v3 on the contact form.
+
+1. Create keys in Google reCAPTCHA Admin for v3.
+2. Add these environment variables (e.g. in `.env.local`):
+
+```bash
+NEXT_PUBLIC_RECAPTCHA_SITE_KEY=your_recaptcha_site_key
+RECAPTCHA_SECRET_KEY=your_recaptcha_secret_key
+# Optional: default 0.5
+RECAPTCHA_MIN_SCORE=0.5
+
+# Existing email settings
+RESEND_API_KEY=your_resend_api_key
+CONTACT_TO_EMAIL=recipient@example.com
+# Optional
+CONTACT_FROM_EMAIL=no-reply@example.com
+```
+
+3. Deploy with the same variables set in your hosting provider.
