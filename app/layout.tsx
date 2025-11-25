@@ -6,6 +6,7 @@ import './globals.css';
 //import Footer from "@/components/layout/footer";
 import { Toaster } from '@/components/ui/toaster';
 import { CookieBanner } from '@/components/cookie-banner';
+import { Analytics } from '@vercel/analytics/react';
 
 import { Geist } from 'next/font/google';
 import './globals.css';
@@ -99,6 +100,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {/*<Footer />*/}
         <CookieBanner />
         <Toaster />
+        <Analytics />
       </body>
     </html>
   );
