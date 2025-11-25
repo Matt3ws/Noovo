@@ -280,7 +280,10 @@ export default function LandingPage() {
         <section id="process" className="w-full py-12 md:py-24 lg:py-32 bg-background scroll-mt-24">
           <div className="container px-4 md:px-6 mx-auto">
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
-              <div className="text-sm uppercase tracking-wider text-foreground/60">Proces</div>
+              {/* <div className="text-sm uppercase tracking-wider text-foreground/60">Proces</div> */}
+              <div className="inline-flex items-center space-x-2 rounded-full bg-muted px-3 py-1 text-sm text-primary">
+                <span>Proces</span>
+              </div>
               <div className="space-y-2">
                 <h2 className="text-3xl font-bold tracking-tighter md:text-4xl/tight">Sådan arbejder vi</h2>
                 <p className="mx-auto max-w-[700px] text-foreground/70 md:text-xl">
@@ -400,7 +403,9 @@ export default function LandingPage() {
         <section id="contact" className="w-full py-12 md:py-24 lg:py-32 scroll-mt-24">
           <div className="container grid items-center gap-6 px-4 md:px-6 lg:grid-cols-2 lg:gap-10 mx-auto">
             <div className="space-y-2">
-              <div className="text-sm uppercase tracking-wider text-foreground/60">Kontakt os</div>
+              <div className="inline-flex items-center space-x-2 rounded-full bg-muted px-3 py-1 text-sm text-primary">
+                <span>Kontakt os</span>
+              </div>
               <h2 className="text-3xl font-bold tracking-tighter md:text-4xl/tight">Skal vi hjælpe jer i gang?</h2>
               <p className="max-w-[600px] text-foreground/70 md:text-xl">Fortæl kort om jeres behov – vi vender hurtigt tilbage med forslag og pris.</p>
               <div className="mt-6 space-y-4">
