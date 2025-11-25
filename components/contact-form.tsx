@@ -8,6 +8,15 @@ import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { useToast } from '@/hooks/use-toast';
 
+declare global {
+  interface Window {
+    grecaptcha?: {
+      ready(callback: () => void): void;
+      execute(siteKey: string, options: { action: string }): Promise<string>;
+    };
+  }
+}
+
 export function ContactForm() {
   const { toast } = useToast();
   const [firstName, setFirstName] = useState('');
@@ -23,12 +32,12 @@ export function ContactForm() {
     if (!recaptchaSiteKey) {
       throw new Error('reCAPTCHA er ikke konfigureret.');
     }
-    if (typeof window === 'undefined' || !(window as any).grecaptcha) {
+    if (typeof window === 'undefined' || !window.grecaptcha) {
       // Script not yet ready
       throw new Error('Sikkerhedstjek er ikke klar. Prøv igen om et øjeblik.');
     }
-    await new Promise((resolve) => (window as any).grecaptcha.ready(resolve));
-    const token = await (window as any).grecaptcha.execute(recaptchaSiteKey, { action: 'contact' });
+    await new Promise<void>((resolve) => window.grecaptcha!.ready(resolve));
+    const token = await window.grecaptcha!.execute(recaptchaSiteKey, { action: 'contact' });
     if (!token) {
       throw new Error('Kunne ikke generere reCAPTCHA token.');
     }
@@ -76,20 +85,41 @@ export function ContactForm() {
             <label htmlFor="first-name" className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
               Fornavn
             </label>
-            <Input id="first-name" placeholder="Indtast dit fornavn" className="bg-background/50" value={firstName} onChange={(e) => setFirstName(e.target.value)} required />
+            <Input
+              id="first-name"
+              placeholder="Indtast dit fornavn"
+              className="bg-background/50"
+              value={firstName}
+              onChange={(e) => setFirstName(e.target.value)}
+              required
+            />
           </div>
           <div className="space-y-2">
             <label htmlFor="last-name" className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
               Efternavn
             </label>
-            <Input id="last-name" placeholder="Indtast dit efternavn" className="bg-background/50" value={lastName} onChange={(e) => setLastName(e.target.value)} />
+            <Input
+              id="last-name"
+              placeholder="Indtast dit efternavn"
+              className="bg-background/50"
+              value={lastName}
+              onChange={(e) => setLastName(e.target.value)}
+            />
           </div>
         </div>
         <div className="space-y-2">
           <label htmlFor="email" className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
             E‑mail
           </label>
-          <Input id="email" type="email" placeholder="Indtast din e‑mail" className="bg-background/50" value={email} onChange={(e) => setEmail(e.target.value)} required />
+          <Input
+            id="email"
+            type="email"
+            placeholder="Indtast din e‑mail"
+            className="bg-background/50"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
         </div>
         <div className="space-y-2">
           <label htmlFor="project-type" className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
@@ -111,7 +141,14 @@ export function ContactForm() {
           <label htmlFor="message" className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
             Besked
           </label>
-          <Textarea id="message" placeholder="Fortæl os om dit projekt" className="min-h-[120px] bg-background/50" value={message} onChange={(e) => setMessage(e.target.value)} required />
+          <Textarea
+            id="message"
+            placeholder="Fortæl os om dit projekt"
+            className="min-h-[120px] bg-background/50"
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
+            required
+          />
         </div>
       </div>
       <Button size="lg" className="w-full bg-primary hover:bg-primary/90 text-primary-foreground" disabled={isSubmitting}>
@@ -120,5 +157,3 @@ export function ContactForm() {
     </form>
   );
 }
-
-
